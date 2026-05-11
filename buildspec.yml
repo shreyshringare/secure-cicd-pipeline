@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+
+  install:
+    commands:
+      - pip3 install bandit
+      - apt-get update
+      - apt-get install -y zip
+
+  pre_build:
+    commands:
+      - bandit -r . -f txt || true
+
+  build:
+    commands:
+      - zip -r function.zip .
+
+artifacts:
+  files:
+    - function.zip
